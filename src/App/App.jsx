@@ -1,58 +1,52 @@
 import "reset.css";
 import React from "react";
+import Ingredients from "./Ingredients/Ingredients";
+import Fridge from "./Fridge/Fridge";
+import Recipes from "./Recipes/Recipes";
+import Home from "./Home/Home";
 import Button from "components/Buttons/Button/Button";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipesAsyc, getAllRecipes } from "store/recipes/recipes";
-import config from "config/env";
-
-console.log(config);
 
 function App() {
   const dispatch = useDispatch();
-  dispatch(getRecipesAsyc());
+  // dispatch(getRecipesAsyc());
   const recipes = useSelector(getAllRecipes);
   console.log(recipes);
 
   // const handleClick = () => {
   // };
 
-  function Home() {
-    return <h2>Home Kota</h2>;
-  }
-
-  function About() {
-    return <h2>About</h2>;
-  }
-
-  function Users() {
-    return <h2>Users</h2>;
-  }
   return (
     <>
       {/* <Button onClick={handleClick}>Thunk example</Button> */}
       <Router>
         <div>
           <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
+            <Button m={2}>
+              <Link to="/">Home</Link>
+            </Button>
+            <Button m={2}>
+              <Link to="/ingredients">Ingredients</Link>
+            </Button>
+            <Button m={2}>
+              <Link to="/fridge">Fridge</Link>
+            </Button>
+            <Button m={2}>
+              <Link to="/recipes">Recipes</Link>
+            </Button>
           </nav>
 
           <Switch>
-            <Route path="/about">
-              <About />
+            <Route path="/ingredients">
+              <Ingredients />
             </Route>
-            <Route path="/users">
-              <Users />
+            <Route path="/fridge">
+              <Fridge />
+            </Route>
+            <Route path="/recipes">
+              <Recipes />
             </Route>
             <Route path="/">
               <Home />
