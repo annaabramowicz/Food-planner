@@ -4,26 +4,28 @@ import Ingredients from "./Ingredients/Ingredients";
 import Fridge from "./Fridge/Fridge";
 import Recipes from "./Recipes/Recipes";
 import Home from "./Home/Home";
+import Navigation from "./Navigation/Navigation";
 import Button from "components/Buttons/Button/Button";
+import Flex from "components/Flex/Flex";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipesAsyc, getAllRecipes } from "store/recipes/recipes";
 
 function App() {
   const dispatch = useDispatch();
-  // dispatch(getRecipesAsyc());
   const recipes = useSelector(getAllRecipes);
-  console.log(recipes);
+  // console.log(recipes);
 
   // const handleClick = () => {
+  // dispatch(getRecipesAsyc());
   // };
 
   return (
     <>
       {/* <Button onClick={handleClick}>Thunk example</Button> */}
       <Router>
-        <div>
-          <nav>
+        <Flex>
+          <Navigation>
             <Button m={2}>
               <Link to="/">Home</Link>
             </Button>
@@ -36,7 +38,7 @@ function App() {
             <Button m={2}>
               <Link to="/recipes">Recipes</Link>
             </Button>
-          </nav>
+          </Navigation>
 
           <Switch>
             <Route path="/ingredients">
@@ -52,7 +54,7 @@ function App() {
               <Home />
             </Route>
           </Switch>
-        </div>
+        </Flex>
       </Router>
     </>
   );

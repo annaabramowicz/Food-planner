@@ -32,7 +32,7 @@ export const getRecipesAsyc = () => async (dispatch, getState) => {
   dispatch(getRecipesStarted());
   try {
     const result = await getRecipesFromApi();
-    // console.log(result);
+    console.log(result);
     dispatch(getRecipesSuccess(result));
   } catch (err) {
     dispatch(getRecipesFail(err));
