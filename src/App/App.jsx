@@ -16,15 +16,15 @@ import { getRecipesAsyc, getAllRecipes } from "store/recipes/recipes";
 function App() {
   const dispatch = useDispatch();
   const recipes = useSelector(getAllRecipes);
-  // console.log(recipes);
 
-  // const handleClick = () => {
-  // dispatch(getRecipesAsyc());
-  // };
+  const handleClick = () => {
+    console.log(recipes);
+    dispatch(getRecipesAsyc());
+  };
 
   return (
     <>
-      {/* <Button onClick={handleClick}>Thunk example</Button> */}
+      <Button onClick={handleClick}>Thunk example</Button>
       <Box width="600px" margin="0 auto">
         <Router>
           <Flex>
@@ -45,6 +45,9 @@ function App() {
           </Flex>
           <div>
             <Switch>
+              <Route path="/">
+                <Home />
+              </Route>
               <Route path="/ingredients">
                 <Ingredients />
               </Route>
@@ -53,9 +56,6 @@ function App() {
               </Route>
               <Route path="/recipes">
                 <Recipes />
-              </Route>
-              <Route path="/">
-                <Home />
               </Route>
             </Switch>
           </div>
