@@ -1,5 +1,5 @@
 import "reset.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Ingredients from "./Ingredients/Ingredients";
 import Fridge from "./Fridge/Fridge";
 import Recipes from "./Recipes/Recipes";
@@ -15,16 +15,13 @@ import { getRecipesAsyc, getAllRecipes } from "store/recipes/recipes";
 
 function App() {
   const dispatch = useDispatch();
-  const recipes = useSelector(getAllRecipes);
 
-  const handleClick = () => {
-    console.log(recipes);
+  useEffect(() => {
     dispatch(getRecipesAsyc());
-  };
+  }, [dispatch]);
 
   return (
     <>
-      <Button onClick={handleClick}>Thunk example</Button>
       <Box width="600px" margin="0 auto">
         <Router>
           <Flex>
