@@ -1,5 +1,5 @@
-import Button from "components/Buttons/Button/Button";
+import MobileHeader from "App/MobileHeader/MobileHeader";
 
-const Fridge = () => <Button> Fridge </Button>;
+const Fridge = () => <MobileHeader> Fridge </MobileHeader>;
 
 export default Fridge;

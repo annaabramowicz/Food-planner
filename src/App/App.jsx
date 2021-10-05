@@ -1,14 +1,13 @@
-import "reset.css";
 import React, { useEffect } from "react";
 import Ingredients from "../pages/Ingredients/Ingredients";
 import Fridge from "../pages/Fridge/Fridge";
 import Recipes from "../pages/Recipes/Recipes";
 import Home from "../pages/Home/Home";
 import Navigation from "./Navigation/Navigation";
-import Button from "components/Buttons/Button/Button";
 import Flex from "components/Flex/Flex";
-import { Box } from "@chakra-ui/react";
-
+import Link from "components/Link/Link";
+import Box from "components/Box/Box";
+import Icon from "components/Icon/Icon";
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +16,10 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRecipesAsyc } from "store/recipes/recipes";
+import { AiOutlineHome } from "react-icons/ai";
+import { BiBookContent } from "react-icons/bi";
+import { BiFridge } from "react-icons/bi";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,35 +35,73 @@ function App() {
           <Flex>
             <Navigation>
               <NavLink to="/">
-                <Button>Home </Button>
+                <Link
+                  _hover={{
+                    background: "white",
+                    color: "teal.500",
+                  }}
+                >
+                  <Flex m={2} flexDirection="column">
+                    <Icon as={AiOutlineHome} />
+                    Home
+                  </Flex>
+                </Link>
               </NavLink>
               <NavLink to="/ingredients">
-                <Button>Ingredients </Button>
+                <Link
+                  _hover={{
+                    background: "white",
+                    color: "teal.500",
+                  }}
+                >
+                  <Flex m={2} flexDirection="column">
+                    <Icon as={RiShoppingCartLine} />
+                    Ingredients
+                  </Flex>
+                </Link>
               </NavLink>
               <NavLink to="/fridge">
-                <Button>Fridge </Button>
+                <Link
+                  _hover={{
+                    background: "white",
+                    color: "teal.500",
+                  }}
+                >
+                  <Flex m={2} flexDirection="column">
+                    <Icon as={BiFridge} />
+                    Fridge
+                  </Flex>
+                </Link>
               </NavLink>
               <NavLink to="/recipes">
-                <Button>Recipes </Button>
+                <Link
+                  _hover={{
+                    background: "white",
+                    color: "teal.500",
+                  }}
+                >
+                  <Flex m={2} flexDirection="column">
+                    <Icon as={BiBookContent} />
+                    Recipes
+                  </Flex>
+                </Link>
               </NavLink>
             </Navigation>
           </Flex>
-          <div>
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/ingredients">
-                <Ingredients />
-              </Route>
-              <Route path="/fridge">
-                <Fridge />
-              </Route>
-              <Route path="/recipes">
-                <Recipes />
-              </Route>
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/ingredients">
+              <Ingredients />
+            </Route>
+            <Route path="/fridge">
+              <Fridge />
+            </Route>
+            <Route path="/recipes">
+              <Recipes />
+            </Route>
+          </Switch>
         </Router>
       </Box>
     </>

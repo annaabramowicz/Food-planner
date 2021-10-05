@@ -1,0 +1,7 @@
+$computer: 600px;
+
+@mixin computer {
+    @media (min-width: $tablet) {
+        @content;
+    }
+}

@@ -1,5 +1,5 @@
-import Button from "components/Buttons/Button/Button";
+import MobileHeader from "App/MobileHeader/MobileHeader";
 
-const Recipes = () => <Button> Recipes </Button>;
+const Recipes = () => <MobileHeader> Recipes </MobileHeader>;
 
 export default Recipes;

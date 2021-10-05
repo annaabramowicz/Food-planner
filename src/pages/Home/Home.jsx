@@ -1,5 +1,5 @@
-import Button from "components/Buttons/Button/Button";
+import MobileHeader from "App/MobileHeader/MobileHeader";
 
-const Home = () => <Button> Home </Button>;
+const Home = () => <MobileHeader> Home </MobileHeader>;
 
 export default Home;

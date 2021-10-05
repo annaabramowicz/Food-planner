@@ -1,4 +1,4 @@
-import MobileHeader from "../../App/MobileHeader/MobileHeader";
+import MobileHeader from "App/MobileHeader/MobileHeader";
 
 const Ingredients = () => <MobileHeader> Ingredients </MobileHeader>;
 
