@@ -1,15 +1,20 @@
 import "reset.css";
 import React, { useEffect } from "react";
-import Ingredients from "./Ingredients/Ingredients";
-import Fridge from "./Fridge/Fridge";
-import Recipes from "./Recipes/Recipes";
-import Home from "./Home/Home";
+import Ingredients from "../pages/Ingredients/Ingredients";
+import Fridge from "../pages/Fridge/Fridge";
+import Recipes from "../pages/Recipes/Recipes";
+import Home from "../pages/Home/Home";
 import Navigation from "./Navigation/Navigation";
 import Button from "components/Buttons/Button/Button";
 import Flex from "components/Flex/Flex";
 import { Box } from "@chakra-ui/react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRecipesAsyc } from "store/recipes/recipes";
 
@@ -26,23 +31,23 @@ function App() {
         <Router>
           <Flex>
             <Navigation>
-              <Button m={2}>
-                <Link to="/">Home</Link>
-              </Button>
-              <Button m={2}>
-                <Link to="/ingredients">Ingredients</Link>
-              </Button>
-              <Button m={2}>
-                <Link to="/fridge">Fridge</Link>
-              </Button>
-              <Button m={2}>
-                <Link to="/recipes">Recipes</Link>
-              </Button>
+              <NavLink to="/">
+                <Button>Home </Button>
+              </NavLink>
+              <NavLink to="/ingredients">
+                <Button>Ingredients </Button>
+              </NavLink>
+              <NavLink to="/fridge">
+                <Button>Fridge </Button>
+              </NavLink>
+              <NavLink to="/recipes">
+                <Button>Recipes </Button>
+              </NavLink>
             </Navigation>
           </Flex>
           <div>
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
               <Route path="/ingredients">
