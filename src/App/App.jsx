@@ -10,8 +10,8 @@ import Flex from "components/Flex/Flex";
 import { Box } from "@chakra-ui/react";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getRecipesAsyc, getAllRecipes } from "store/recipes/recipes";
+import { useDispatch } from "react-redux";
+import { getRecipesAsyc } from "store/recipes/recipes";
 
 function App() {
   const dispatch = useDispatch();
