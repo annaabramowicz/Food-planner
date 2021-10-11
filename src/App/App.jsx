@@ -16,10 +16,12 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRecipesAsyc } from "store/recipes/recipes";
-import { AiOutlineHome } from "react-icons/ai";
-import { BiBookContent } from "react-icons/bi";
-import { BiFridge } from "react-icons/bi";
-import { RiShoppingCartLine } from "react-icons/ri";
+import {
+  IoHomeOutline,
+  IoCartOutline,
+  IoLibraryOutline,
+  IoJournalOutline,
+} from "react-icons/io5";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +44,7 @@ function App() {
                   }}
                 >
                   <Flex m={2} flexDirection="column">
-                    <Icon as={AiOutlineHome} />
+                    <Icon as={IoHomeOutline} />
                     Home
                   </Flex>
                 </Link>
@@ -55,7 +57,7 @@ function App() {
                   }}
                 >
                   <Flex m={2} flexDirection="column">
-                    <Icon as={RiShoppingCartLine} />
+                    <Icon as={IoCartOutline} />
                     Ingredients
                   </Flex>
                 </Link>
@@ -68,7 +70,7 @@ function App() {
                   }}
                 >
                   <Flex m={2} flexDirection="column">
-                    <Icon as={BiFridge} />
+                    <Icon as={IoJournalOutline} />
                     Fridge
                   </Flex>
                 </Link>
@@ -81,7 +83,7 @@ function App() {
                   }}
                 >
                   <Flex m={2} flexDirection="column">
-                    <Icon as={BiBookContent} />
+                    <Icon as={IoLibraryOutline} />
                     Recipes
                   </Flex>
                 </Link>
