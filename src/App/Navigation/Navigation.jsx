@@ -2,6 +2,7 @@ import Flex from "components/Flex/Flex";
 import Link from "components/Link/Link";
 import Icon from "components/Icon/Icon";
 import { BrowserRouter as NavLink } from "react-router-dom";
+import { colorPrimary } from "../style/theme/theme";
 
 const Navigation = ({ routes }) => (
   <Flex
@@ -17,7 +18,7 @@ const Navigation = ({ routes }) => (
         <Link
           _hover={{
             background: "white",
-            color: "teal.500",
+            color: colorPrimary,
           }}
         >
           <Flex m={2} flexDirection="column">
