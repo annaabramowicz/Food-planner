@@ -1,12 +1,7 @@
 import Heading from "components/Heading/Heading";
-import "@fontsource/orelega-one";
-
+import { fontFamilyPrimary } from "App/style/theme/theme";
 const MobileHeader = (props) => (
-  <Heading
-    fontFamily="Orelega One"
-    textAlign="left"
-    {...props}
-  />
+  <Heading fontFamily={fontFamilyPrimary} textAlign="left" {...props} />
 );
 
 export default MobileHeader;

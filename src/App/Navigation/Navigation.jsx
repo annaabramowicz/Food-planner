@@ -1,6 +1,9 @@
 import Flex from "components/Flex/Flex";
+import Link from "components/Link/Link";
+import Icon from "components/Icon/Icon";
+import { BrowserRouter as NavLink } from "react-router-dom";
 
-const Navigation = (props) => (
+const Navigation = ({ routes }) => (
   <Flex
     justifyContent="space-between"
     pos="fixed"
@@ -8,8 +11,23 @@ const Navigation = (props) => (
     w="600px"
     h="100px"
     m="0 auto"
-    {...props}
-  />
+  >
+    {routes.map((route) => (
+      <NavLink key={route.path} to={route.path}>
+        <Link
+          _hover={{
+            background: "white",
+            color: "teal.500",
+          }}
+        >
+          <Flex m={2} flexDirection="column">
+            <Icon as={route.icon} />
+            {route.text}
+          </Flex>
+        </Link>
+      </NavLink>
+    ))}
+  </Flex>
 );
 
 export default Navigation;
