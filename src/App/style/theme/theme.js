@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { createBreakpoints } from "@chakra-ui/theme-tools";
 import "@fontsource/yeseva-one";
 import "@fontsource/orelega-one";
 
@@ -11,6 +12,11 @@ export const fontFamilyPrimary =
   "Yeseva One, Orelega One, Times New Roman, serif";
 export const fontFamilySecondary = "Rota, Arial, sans-serif";
 
+const breakpoints = createBreakpoints({
+  sm: "0",
+  md: "600px",
+});
+
 const theme = extendTheme({
   styles: {
     global: {
@@ -19,6 +25,7 @@ const theme = extendTheme({
       },
     },
   },
+  breakpoints,
 });
 
 export default theme;
