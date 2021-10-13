@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <Box width="600px" margin="0 auto">
+      <Box margin="5px auto">
         <Router>
           <Navigation routes={routes} />
           <Switch>
