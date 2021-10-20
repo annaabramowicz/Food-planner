@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRecipesAsyc } from "store/recipes/recipes";
 import routes from "./routes";
+import MobileHeader from "App/MobileHeader/MobileHeader";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,24 +15,23 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
-      <Box margin="5px auto">
-        <Router>
-          <Navigation routes={routes} />
-          <Switch>
-            {routes.map((route) => (
-              <Route
-                key={route.path}
-                exact={Boolean(route.isExact)}
-                path={route.path}
-              >
-                {route.components}
-              </Route>
-            ))}
-          </Switch>
-        </Router>
-      </Box>
-    </>
+    <Box margin="5px auto">
+      <Router>
+        <Navigation routes={routes} />
+        <Switch>
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              exact={Boolean(route.isExact)}
+            >
+              <MobileHeader>{route.text}</MobileHeader>
+              {route.component}
+            </Route>
+          ))}
+        </Switch>
+      </Router>
+    </Box>
   );
 }
 

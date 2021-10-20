@@ -14,26 +14,26 @@ const routes = [
     path: "/",
     icon: IoHomeOutline,
     text: "Home",
-    components: <Home />,
+    component: <Home />,
     isExact: true,
   },
   {
     path: "/ingredients",
     icon: IoCartOutline,
     text: "Ingredients",
-    components: <Ingredients />,
+    component: <Ingredients />,
   },
   {
     path: "/fridge",
     icon: IoJournalOutline,
     text: "Fridge",
-    components: <Fridge />,
+    component: <Fridge />,
   },
   {
     path: "/recipes",
     icon: IoLibraryOutline,
     text: "Recipes",
-    components: <Recipes />,
+    component: <Recipes />,
   },
 ];
 

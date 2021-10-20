@@ -1,5 +1,3 @@
-import MobileHeader from "App/MobileHeader/MobileHeader";
-
-const Fridge = () => <MobileHeader> Fridge </MobileHeader>;
+const Fridge = () => <> Fridge </>;
 
 export default Fridge;

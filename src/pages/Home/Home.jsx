@@ -1,5 +1,3 @@
-import MobileHeader from "App/MobileHeader/MobileHeader";
-
-const Home = () => <MobileHeader> Home </MobileHeader>;
+const Home = () => <> Home </>;
 
 export default Home;
