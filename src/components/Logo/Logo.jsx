@@ -3,7 +3,6 @@ import logo from "./logo.png";
 
 const Logo = () => (
   <Image
-    display={{ sm: "none", md: "block" }}
     src={logo}
     alt="Logo"
     objectFit="cover"

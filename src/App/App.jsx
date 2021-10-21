@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Box margin="5px auto">
+    <Box padding="5px 20px" overflowX="hidden">
       <Router>
         <Navigation routes={routes} />
         <Switch>
