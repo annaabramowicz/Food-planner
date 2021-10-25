@@ -20,7 +20,7 @@ const TabletDesktopNavigation = ({ routes }) => {
           <Box display={{base: "none", sm: "block" }}>
             <Logo />
           </Box>
-          <Flex ml={7} justifyContent="space-between" w="300px">
+          <Flex m="0 4px" justifyContent="space-between" w="280px">
             {routes.map((route) => {
               const activeLinkStyles =
                 activePath === route.path
@@ -41,7 +41,7 @@ const TabletDesktopNavigation = ({ routes }) => {
                   <Flex
                     pos="relative"
                     top="20px"
-                    pb="35px"
+                    pb="38px"
                     m={2}
                     flexDirection="column"
                     {...activeLinkStyles}

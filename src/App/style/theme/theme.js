@@ -17,6 +17,7 @@ const theme = extendTheme({
     global: {
       body: {
         fontFamily: fontFamilySecondary,
+        fontSize: "16px",
       },
     },
   },

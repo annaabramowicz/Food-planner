@@ -7,6 +7,7 @@ const Logo = () => (
     alt="Logo"
     objectFit="cover"
     boxSize="50px"
+    minWidth="50px"
   />
 );
 
