@@ -13,7 +13,7 @@ const GET_RECIPES_FAIL = `${NAMESPACE}FAIL`;
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPES_SUCCESS:
-      return [...state, action.payload];
+      return [...state, ...action.payload];
     default:
       return state;
   }
@@ -28,11 +28,10 @@ const getRecipesSuccess = (result) => ({
 const getRecipesFail = (error) => ({ type: GET_RECIPES_FAIL, error });
 
 // THUNKS
-export const getRecipesAsyc = () => async (dispatch, getState) => {
+export const getRecipesAsyc = () => async (dispatch) => {
   dispatch(getRecipesStarted());
   try {
     const result = await getRecipesFromApi();
-    console.log(result);
     dispatch(getRecipesSuccess(result));
   } catch (err) {
     dispatch(getRecipesFail(err));

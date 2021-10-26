@@ -1,12 +1,16 @@
-import Flex from "components/Flex/Flex";
-import styles from "./Navigation.module.scss";
+import Box from "components/Box/Box";
+import MobileNavigation from "./MobileNavigation";
+import TabletDesktopNavigation from "./TabletDesktopNavigation";
 
 const Navigation = (props) => (
-  <Flex
-    justifyContent="space-between"
-    className={styles.navigation_mobile}
-    {...props}
-  />
+  <>
+    <Box display={{ sm: "none" }}>
+      <MobileNavigation {...props} />
+    </Box>
+    <Box display={{ base: "none", sm: "block" }}>
+      <TabletDesktopNavigation {...props} />
+    </Box>
+  </>
 );
 
 export default Navigation;
