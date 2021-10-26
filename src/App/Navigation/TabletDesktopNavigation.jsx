@@ -58,7 +58,7 @@ const TabletDesktopNavigation = ({ routes }) => {
             })}
           </Flex>
         </Flex>
-        <SearchBar display="block" />
+        <SearchBar />
       </Flex>
       <Box
         borderBottom={`3px solid ${colorFourth}`}

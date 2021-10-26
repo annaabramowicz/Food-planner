@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { getRecipesAsyc } from "store/recipes/recipes";
 import routes from "./routes";
 import MobileHeader from "App/MobileHeader/MobileHeader";
+import SearchBar from "./SearchBar/SearchBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
               exact={Boolean(route.isExact)}
             >
               <MobileHeader>{route.text}</MobileHeader>
+              <SearchBar />
               {route.component}
             </Route>
           ))}

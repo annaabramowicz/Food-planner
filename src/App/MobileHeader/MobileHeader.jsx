@@ -4,4 +4,3 @@ const MobileHeader = (props) => (
 );
 
 export default MobileHeader;
- 
