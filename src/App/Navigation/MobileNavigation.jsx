@@ -6,7 +6,7 @@ import { useState } from "react";
 import { colorPrimary } from "../style/theme/theme";
 
 const MobileNavigation = ({ routes }) => {
-  const [activePath, setActivePath] = useState("/");
+  const [activePath, setActivePath] = useState(routes[0].path);
   return (
     <Flex
       justifyContent="space-around"

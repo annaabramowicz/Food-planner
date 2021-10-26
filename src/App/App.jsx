@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Box padding="5px 10px" overflowX="hidden">
+    <Box padding={{ sm: "5px 10px", lg: "5px 30px" }} overflowX="hidden">
       <Router>
         <Navigation routes={routes} />
         <Switch>

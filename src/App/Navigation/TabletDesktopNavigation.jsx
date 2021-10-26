@@ -12,15 +12,19 @@ import {
 } from "../style/theme/theme";
 
 const TabletDesktopNavigation = ({ routes }) => {
-  const [activePath, setActivePath] = useState("/");
+  const [activePath, setActivePath] = useState(routes[0].path);
   return (
     <>
       <Flex justifyContent="space-between" w="100%" h="100px" m="0 auto">
         <Flex>
-          <Box display={{base: "none", sm: "block" }}>
+          <Box display={{ base: "none", sm: "block" }}>
             <Logo />
           </Box>
-          <Flex m="0 4px" justifyContent="space-between" w="280px">
+          <Flex
+            m={{ sm: "0 4px", lg: "0 18px" }}
+            justifyContent="space-between"
+            w={{ sm: "280px", lg: "320px" }}
+          >
             {routes.map((route) => {
               const activeLinkStyles =
                 activePath === route.path
@@ -60,7 +64,7 @@ const TabletDesktopNavigation = ({ routes }) => {
         borderBottom={`3px solid ${colorFourth}`}
         w="110vw"
         marginLeft="-30px"
-      ></Box>
+      />
     </>
   );
 };
