@@ -1,4 +1,6 @@
 import Item from "./Item/Item";
+import { useSelector } from "react-redux";
+import { getAllRecipes } from "store/recipes/recipes";
 
 const itemsList = [
   {
@@ -22,10 +24,13 @@ const itemsList = [
 ];
 
 function ItemsList() {
+  const recipesList = useSelector(getAllRecipes);
+
+  console.log(recipesList);
   return (
     <ul>
-      {itemsList.map((item) => (
-        <Item key={item.text} item={item} />
+      {recipesList.map((recipes) => (
+        <Item key={recipes.id} item={recipes.title} />
       ))}
     </ul>
   );
