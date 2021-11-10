@@ -1,5 +1,5 @@
-import ItemsList from "App/ItemsList/ItlemsList";
+import IngredientsList from "App/IngredientsList/IngredientsList";
 
-const Ingredients = () => <ItemsList />;
+const Ingredients = () => <IngredientsList />;
 
 export default Ingredients;

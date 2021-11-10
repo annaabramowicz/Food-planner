@@ -7,10 +7,13 @@ import { getRecipesAsyc } from "store/recipes/recipes";
 import routes from "./routes";
 import MobileHeader from "App/MobileHeader/MobileHeader";
 import SearchBar from "./SearchBar/SearchBar";
+import { colorFourth } from "./style/theme/theme";
+import { useState } from "react";
 
 function App() {
+  const [currentInputValue, setCurrentInputValue] = useState("");
   const dispatch = useDispatch();
-
+  console.log(currentInputValue);
   useEffect(() => {
     dispatch(getRecipesAsyc());
   }, [dispatch]);
@@ -27,7 +30,17 @@ function App() {
               exact={Boolean(route.isExact)}
             >
               <MobileHeader>{route.text}</MobileHeader>
-              <SearchBar />
+              <Box display={{ base: "block", sm: "none" }} margin="10px 0 15px 0">
+                <SearchBar
+                  inputGroupProps={{
+                    bgColor: { colorFourth },
+                    variant: "filled",
+                  }}
+                  placeholder="Search by recipes or ingredients"
+                  setValue={setCurrentInputValue}
+                  currentInputValue={currentInputValue}
+                />
+              </Box>
               {route.component}
             </Route>
           ))}

@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 import SearchBar from "App/SearchBar/SearchBar";
 import Logo from "components/Logo/Logo";
 import Box from "components/Box/Box";
-
 import { useState } from "react";
 import {
   colorPrimary,
   colorPrimaryDark,
   colorFourth,
 } from "../style/theme/theme";
+import PropTypes from "prop-types";
 
 const TabletDesktopNavigation = ({ routes }) => {
   const [activePath, setActivePath] = useState(routes[0].path);
@@ -58,7 +58,9 @@ const TabletDesktopNavigation = ({ routes }) => {
             })}
           </Flex>
         </Flex>
-        <SearchBar />
+        <Box w="200px">
+          <SearchBar borderColor={colorFourth} />
+        </Box>
       </Flex>
       <Box
         borderBottom={`3px solid ${colorFourth}`}
@@ -67,6 +69,10 @@ const TabletDesktopNavigation = ({ routes }) => {
       />
     </>
   );
+};
+
+TabletDesktopNavigation.propTypes = {
+  routes: PropTypes.array,
 };
 
 export default TabletDesktopNavigation;
