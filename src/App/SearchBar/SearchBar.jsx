@@ -8,15 +8,11 @@ import PropTypes from "prop-types";
 
 const SearchBar = ({
   inputGroupProps,
-  placeholder = "Search",
   borderColor = "transparent",
+  placeholder,
   setValue,
   currentInputValue,
 }) => {
-  const onInputChange = (e) => {
-    setValue(e.target.value);
-  };
-
   return (
     <InputGroup size="sm" color={colorThird} {...inputGroupProps}>
       <InputLeftElement
@@ -28,8 +24,6 @@ const SearchBar = ({
         focusBorderColor={colorPrimary}
         placeholder={placeholder}
         borderColor={borderColor}
-        onChange={onInputChange}
-        value={currentInputValue}
       />
     </InputGroup>
   );
@@ -42,19 +36,3 @@ SearchBar.propTypes = {
 };
 
 export default SearchBar;
-
-// InputGroup
-//     color={colorThird}
-//     bgColor={colorFourth}
-//     variant="filled"
-//     size="sm"
-//     m="20px 0"
-//     // w={{ sm: "200px" }}
-//     {...props}
-//   >
-//     <InputLeftElement
-//       pointerEvents="none"
-//       children={<Icon as={IoSearch} color={colorThird} />}
-//     />
-//     <Input focusBorderColor={colorPrimary} placeholder="Search mobile" />
-//   </InputGroup>

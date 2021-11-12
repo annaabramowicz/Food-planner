@@ -18,6 +18,7 @@ const theme = extendTheme({
       body: {
         fontFamily: fontFamilySecondary,
         fontSize: "16px",
+        fontWeight: "700",
       },
     },
   },

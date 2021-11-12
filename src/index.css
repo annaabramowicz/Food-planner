@@ -15,4 +15,11 @@ code {
   font-family: "Rota";
   src: local("Rota-Bold"),
     url(./App/style/fonts/Rota-Bold.otf) format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Rota";
+  src: local("Rota-SemiBold"),
+    url(./App/style/fonts/Rota-SemiBold.otf) format("truetype");
+  font-weight: 400;
 }
