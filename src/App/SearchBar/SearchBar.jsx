@@ -10,8 +10,6 @@ const SearchBar = ({
   inputGroupProps,
   borderColor = "transparent",
   placeholder,
-  setValue,
-  currentInputValue,
 }) => {
   return (
     <InputGroup size="sm" color={colorThird} {...inputGroupProps}>

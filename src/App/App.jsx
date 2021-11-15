@@ -8,7 +8,6 @@ import routes from "./routes";
 import MobileHeader from "App/MobileHeader/MobileHeader";
 import SearchBar from "./SearchBar/SearchBar";
 import { colorFourth } from "./style/theme/theme";
-import { useState } from "react";
 
 function App() {
   const dispatch = useDispatch();
