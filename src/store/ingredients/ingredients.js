@@ -1,6 +1,5 @@
-// import { getIngredientsFromApi } from "services/foodApi";
+import { getIngredientsFromApi } from "services/foodApi";
 import ingredients from "App/ingredients";
-
 
 //initial state
 const initialState = ingredients;
@@ -15,30 +14,30 @@ const GET_INGREDIENTS_FAIL = `${NAMESPACE}FAIL`;
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INGREDIENTS_SUCCESS:
-      return state;
+      return action.payload?.length ? [...action.payload] : initialState;
     default:
       return state;
   }
 };
 
 //ACTION CREATORS
-const getIngredientsStarted = () => ({ type:  GET_INGREDIENTS_STARTED });
+const getIngredientsStarted = () => ({ type: GET_INGREDIENTS_STARTED });
 const getIngredientsSuccess = (result) => ({
   type: GET_INGREDIENTS_SUCCESS,
   payload: result,
 });
 const getIngredientsFail = (error) => ({ type: GET_INGREDIENTS_FAIL, error });
 
-// // THUNKS
-// export const getIngredientsAsyc = () => async (dispatch) => {
-//   dispatch(getIngredientsStarted());
-//   try {
-//     const result = await getIngredientsFromApi();
-//     dispatch(getIngredientsSuccess(result));
-//   } catch (err) {
-//     dispatch(getIngredientsFail(err));
-//   }
-// };
+// THUNKS
+export const getIngredientsAsyc = (searchTerm) => async (dispatch) => {
+  dispatch(getIngredientsStarted());
+  try {
+    const result = await getIngredientsFromApi(searchTerm);
+    dispatch(getIngredientsSuccess(result));
+  } catch (err) {
+    dispatch(getIngredientsFail(err));
+  }
+};
 
 //SELECTORS
 export const getIngredients = (state) => state.ingredients;

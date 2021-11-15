@@ -7,3 +7,8 @@ export const getRecipesFromApi = () =>
   get(`${API_URL}recipes/complexSearch?apiKey=${config.apiKey}`).then(
     ({ data }) => data.results
   );
+
+export const getIngredientsFromApi = (searchTerm) =>
+  get(
+    `${API_URL}food/ingredients/search?query=${searchTerm}&apiKey=${config.apiKey}`
+  ).then(({ data }) => data.results);

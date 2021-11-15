@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { getIngredients } from "store/ingredients/ingredients";
 
-
 function IngredientsList() {
   const ingredientsList = useSelector(getIngredients);
   return (

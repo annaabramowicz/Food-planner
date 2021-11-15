@@ -5,12 +5,24 @@ import { colorPrimary, colorThird } from "../style/theme/theme";
 import Icon from "components/Icon/Icon";
 import { IoSearch } from "react-icons/io5";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getIngredientsAsyc } from "store/ingredients/ingredients";
 
 const SearchBar = ({
   inputGroupProps,
   borderColor = "transparent",
   placeholder,
 }) => {
+  const [value, setValue] = useState("");
+  const dispatch = useDispatch();
+
+  const onValueChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  dispatch(getIngredientsAsyc(value));
+
   return (
     <InputGroup size="sm" color={colorThird} {...inputGroupProps}>
       <InputLeftElement
@@ -22,6 +34,7 @@ const SearchBar = ({
         focusBorderColor={colorPrimary}
         placeholder={placeholder}
         borderColor={borderColor}
+        onChange={onValueChange}
       />
     </InputGroup>
   );
