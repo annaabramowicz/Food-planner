@@ -8,6 +8,15 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getIngredientsAsyc } from "store/ingredients/ingredients";
+import { throttle } from "lodash-es";
+
+const throttledSearchIngredientsAsync = throttle(
+  (dispatch, value) => {
+    dispatch(getIngredientsAsyc(value));
+  },
+  3000,
+  { leading: false }
+);
 
 const SearchBar = ({
   inputGroupProps,
@@ -18,10 +27,12 @@ const SearchBar = ({
   const dispatch = useDispatch();
 
   const onValueChange = (e) => {
-    setValue(e.target.value);
+    const searchTerm = e.target.value;
+    setValue(searchTerm);
+    // console.log(value);
+    // throttledSearchIngredientsAsync(dispatch, value);
+    throttledSearchIngredientsAsync(dispatch, searchTerm);
   };
-
-  dispatch(getIngredientsAsyc(value));
 
   return (
     <InputGroup size="sm" color={colorThird} {...inputGroupProps}>

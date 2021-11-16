@@ -14,8 +14,8 @@ function Ingredient({ ingredient }) {
       m={1}
       flexDirection="column"
     >
-      <Flex minH="100px" minW="120px">
-        <img src={imagePath + ingredient.image} alt={ingredient.name} />
+      <Flex  h="100px" minW="120px">
+        <img height="100px" src={imagePath + ingredient.image} alt={ingredient.name} />
       </Flex>
       <Text> {ingredient.name}</Text>
     </Flex>

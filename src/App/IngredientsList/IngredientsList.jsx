@@ -1,22 +1,22 @@
 import Item from "./Ingredient/Ingredient";
 import Flex from "components/Flex/Flex";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { getIngredients } from "store/ingredients/ingredients";
+import LoadingSpinner from "App/LoadingSpinner/LoadingSpinner";
 
 function IngredientsList() {
   const ingredientsList = useSelector(getIngredients);
-  return (
+  const loadingSpinnerSwitched = ingredientsList.loading ? (
     <Flex flexWrap="wrap" justifyContent="space-around">
-      {ingredientsList.map((ingredient) => (
+      {ingredientsList.ingredients.map((ingredient) => (
         <Item key={ingredient.id} ingredient={ingredient} />
       ))}
     </Flex>
+  ) : (
+    <LoadingSpinner />
   );
-}
 
-IngredientsList.propTypes = {
-  ingredients: PropTypes.array,
-};
+  return <>{loadingSpinnerSwitched}</>;
+}
 
 export default IngredientsList;
