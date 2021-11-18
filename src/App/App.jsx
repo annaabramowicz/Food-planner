@@ -32,7 +32,7 @@ function App() {
                   placeholder="Search by recipes or ingredients"
                 />
               </Box>
-              {route.component}
+              {route.component }
             </Route>
           ))}
         </Switch>

@@ -1,10 +1,13 @@
 import Flex from "components/Flex/Flex";
 import Text from "components/Text/Text";
 import { colorFourth } from "App/style/theme/theme";
+import Image from "components/Image/Image";
+import config from "config/env";
+
 
 function Ingredient({ ingredient }) {
   const imageSize = `100x100`;
-  const imagePath = `https://spoonacular.com/cdn/ingredients_${imageSize}/`;
+  const imagePath = `${config.apiCdnUrl}ingredients_${imageSize}/`;
   return (
     <Flex
       border="1px"
@@ -15,7 +18,7 @@ function Ingredient({ ingredient }) {
       flexDirection="column"
     >
       <Flex  h="100px" minW="120px">
-        <img height="100px" src={imagePath + ingredient.image} alt={ingredient.name} />
+        <Image height="100px" htmlHeight="100px" src={imagePath + ingredient.image} alt={ingredient.name} />
       </Flex>
       <Text> {ingredient.name}</Text>
     </Flex>

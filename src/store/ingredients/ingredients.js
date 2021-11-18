@@ -2,7 +2,7 @@ import { getIngredientsFromApi } from "services/foodApi";
 import ingredients from "App/ingredients";
 
 //initial state
-const initialState = { ingredients, loading: "false" };
+const initialState = { ingredients, loading: false };
 
 //ACTION TYPES
 const NAMESPACE = "GET_INGREDIENTS_";
@@ -15,15 +15,18 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INGREDIENTS_STARTED:
       return {
-        ingredients: [...initialState.ingredients],
-        loading: "true",
+        ...state,
+        loading: true,
       };
     case GET_INGREDIENTS_SUCCESS:
       return {
-        ingredients: action.payload?.length
-          ? [...action.payload]
-          : initialState.ingredients,
-        loading: "false",
+        ingredients: action.payload?.length ? [...action.payload] : [],
+        loading: false,
+      };
+    case GET_INGREDIENTS_FAIL:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

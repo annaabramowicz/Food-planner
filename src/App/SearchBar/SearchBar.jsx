@@ -5,7 +5,6 @@ import { colorPrimary, colorThird } from "../style/theme/theme";
 import Icon from "components/Icon/Icon";
 import { IoSearch } from "react-icons/io5";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getIngredientsAsyc } from "store/ingredients/ingredients";
 import { throttle } from "lodash-es";
@@ -23,15 +22,10 @@ const SearchBar = ({
   borderColor = "transparent",
   placeholder,
 }) => {
-  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   const onValueChange = (e) => {
-    const searchTerm = e.target.value;
-    setValue(searchTerm);
-    // console.log(value);
-    // throttledSearchIngredientsAsync(dispatch, value);
-    throttledSearchIngredientsAsync(dispatch, searchTerm);
+    throttledSearchIngredientsAsync(dispatch, e.target.value);
   };
 
   return (
