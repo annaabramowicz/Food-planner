@@ -1,4 +1,4 @@
-import { getIngredientsFromApi } from "services/foodApi";
+import { getIngredientsBySearchTermFromApi } from "services/foodApi";
 import ingredients from "App/ingredients";
 
 //initial state
@@ -45,7 +45,7 @@ const getIngredientsFail = (error) => ({ type: GET_INGREDIENTS_FAIL, error });
 export const getIngredientsAsyc = (searchTerm) => async (dispatch) => {
   dispatch(getIngredientsStarted());
   try {
-    const result = await getIngredientsFromApi(searchTerm);
+    const result = await getIngredientsBySearchTermFromApi(searchTerm);
     dispatch(getIngredientsSuccess(result));
   } catch (err) {
     dispatch(getIngredientsFail(err));

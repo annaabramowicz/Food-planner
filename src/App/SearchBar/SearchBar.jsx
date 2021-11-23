@@ -7,11 +7,14 @@ import { IoSearch } from "react-icons/io5";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { getIngredientsAsyc } from "store/ingredients/ingredients";
+import { getRecipesAsyc } from "store/recipes/recipes";
 import { throttle } from "lodash-es";
 
 const throttledSearchIngredientsAsync = throttle(
   (dispatch, value) => {
     dispatch(getIngredientsAsyc(value));
+    dispatch(getRecipesAsyc(value));
+
   },
   3000,
   { leading: false }

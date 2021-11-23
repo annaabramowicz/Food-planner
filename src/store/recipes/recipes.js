@@ -1,7 +1,10 @@
-import { getRecipesFromApi } from "services/foodApi";
+import {
+  getRecipesFromApi,
+  getRecipesBySearchTermFromApi,
+} from "services/foodApi";
 
 //initial state
-const initialState = [];
+const initialState = { recipes: [], loading: false };
 
 //ACTION TYPES
 const NAMESPACE = "GET_RECIPES_";
@@ -12,8 +15,21 @@ const GET_RECIPES_FAIL = `${NAMESPACE}FAIL`;
 //REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_RECIPES_STARTED:
+      return {
+        ...state,
+        loading: true,
+      };
     case GET_RECIPES_SUCCESS:
-      return [...state, ...action.payload];
+      return {
+        recipes: action.payload?.length ? [...action.payload] : [],
+        loading: false,
+      };
+    case GET_RECIPES_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       return state;
   }
@@ -28,10 +44,13 @@ const getRecipesSuccess = (result) => ({
 const getRecipesFail = (error) => ({ type: GET_RECIPES_FAIL, error });
 
 // THUNKS
-export const getRecipesAsyc = () => async (dispatch) => {
+export const getRecipesAsyc = (searchTerm) => async (dispatch) => {
   dispatch(getRecipesStarted());
   try {
-    const result = await getRecipesFromApi();
+    const result = searchTerm
+      ? await getRecipesBySearchTermFromApi(searchTerm)
+      : await getRecipesFromApi();
+
     dispatch(getRecipesSuccess(result));
   } catch (err) {
     dispatch(getRecipesFail(err));
@@ -39,6 +58,6 @@ export const getRecipesAsyc = () => async (dispatch) => {
 };
 
 //SELECTORS
-export const getAllRecipes = (state) => state.recipes;
+export const getRecipes = (state) => state.recipes;
 
 export default reducer;
