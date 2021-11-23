@@ -11,24 +11,39 @@ import { getRecipesAsyc } from "store/recipes/recipes";
 import { throttle } from "lodash-es";
 
 const throttledSearchIngredientsAsync = throttle(
-  (dispatch, value) => {
-    dispatch(getIngredientsAsyc(value));
-    dispatch(getRecipesAsyc(value));
-
+  (dispatch, value, component) => {
+    dispatch(renderSwitch(component).query(value));
   },
   3000,
   { leading: false }
 );
 
+const renderSwitch = (rendedComponent, value) => {
+  switch (rendedComponent) {
+    case "Home":
+      return { placeholder: "Search" };
+    case "Ingredients":
+      return {
+        placeholder: "Search by ingredients",
+        query: getIngredientsAsyc(value),
+      };
+    case "Fridge":
+      return { placeholder: "Search" };
+    case "Recipes":
+      return { placeholder: "Search by recipes", query: getRecipesAsyc(value) };
+    default:
+      return { placeholder: "Search" };
+  }
+};
 const SearchBar = ({
   inputGroupProps,
   borderColor = "transparent",
-  placeholder,
+  component,
 }) => {
   const dispatch = useDispatch();
 
   const onValueChange = (e) => {
-    throttledSearchIngredientsAsync(dispatch, e.target.value);
+    throttledSearchIngredientsAsync(dispatch, e.target.value, component);
   };
 
   return (
@@ -40,7 +55,7 @@ const SearchBar = ({
         paddingLeft={8}
         borderRadius="7px"
         focusBorderColor={colorPrimary}
-        placeholder={placeholder}
+        placeholder={renderSwitch(component).placeholder}
         borderColor={borderColor}
         onChange={onValueChange}
       />
@@ -50,7 +65,7 @@ const SearchBar = ({
 
 SearchBar.propTypes = {
   inputGroupProps: PropTypes.object,
-  placeholder: PropTypes.string,
+  component: PropTypes.string,
   borderColor: PropTypes.string,
 };
 

@@ -29,7 +29,7 @@ function App() {
                     bgColor: { colorFourth },
                     variant: "filled",
                   }}
-                  placeholder="Search by recipes or ingredients"
+                  component={route.text}
                 />
               </Box>
               <Box mb={{ base: "100px", sm: "0" }}>{route.component}</Box>
