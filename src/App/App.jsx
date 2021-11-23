@@ -4,8 +4,8 @@ import Box from "components/Box/Box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import routes from "./routes";
 import MobileHeader from "App/MobileHeader/MobileHeader";
-import SearchBar from "./SearchBar/SearchBar";
 import { colorFourth } from "./style/theme/theme";
+import SearchBar from "./SearchBar/SearchBar";
 
 function App() {
   return (
