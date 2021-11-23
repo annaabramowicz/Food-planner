@@ -20,7 +20,8 @@ const MobileNavigation = ({ routes }) => {
       bottom={0}
       left={0}
       right={0}
-    >
+      zIndex={1}
+      >
       {routes.map((route) => {
         const activeLinkStyles =
           activePath === route.path
