@@ -1,14 +1,18 @@
 import Flex from "components/Flex/Flex";
 import { NavLink } from "react-router-dom";
 import Icon from "components/Icon/Icon";
-
 import { useState } from "react";
 import { colorPrimary } from "../style/theme/theme";
+import PropTypes from "prop-types";
+import { colorFourth } from "App/style/theme/theme";
 
 const MobileNavigation = ({ routes }) => {
   const [activePath, setActivePath] = useState(routes[0].path);
   return (
     <Flex
+      bg="white"
+      borderTop="1px"
+      borderColor={colorFourth}
       justifyContent="space-around"
       w="100%"
       h="100px"
@@ -49,6 +53,10 @@ const MobileNavigation = ({ routes }) => {
       })}
     </Flex>
   );
+};
+
+MobileNavigation.propTypes = {
+  routes: PropTypes.array,
 };
 
 export default MobileNavigation;
