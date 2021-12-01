@@ -44,8 +44,8 @@ const getRecipesSuccess = (result) => ({
 const getRecipesFail = (error) => ({ type: GET_RECIPES_FAIL, error });
 
 // THUNKS
-export const getRecipesAsyc = (searchTerm) => async (dispatch) => {
-  dispatch(getRecipesStarted());
+export const getRecipesAsync = (searchTerm) => async (dispatch) => {
+  dispatch(getRecipesStarted(searchTerm));
   try {
     const result = searchTerm
       ? await getRecipesBySearchTermFromApi(searchTerm)

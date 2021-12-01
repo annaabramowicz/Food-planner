@@ -29,7 +29,6 @@ function App() {
                     bgColor: { colorFourth },
                     variant: "filled",
                   }}
-                  component={route.text}
                 />
               </Box>
               <Box mb={{ base: "100px", sm: "0" }}>{route.component}</Box>

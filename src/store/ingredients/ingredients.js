@@ -42,7 +42,7 @@ const getIngredientsSuccess = (result) => ({
 const getIngredientsFail = (error) => ({ type: GET_INGREDIENTS_FAIL, error });
 
 // THUNKS
-export const getIngredientsAsyc = (searchTerm) => async (dispatch) => {
+export const getIngredientsAsync = (searchTerm) => async (dispatch) => {
   dispatch(getIngredientsStarted());
   try {
     const result = await getIngredientsBySearchTermFromApi(searchTerm);

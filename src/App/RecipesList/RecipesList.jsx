@@ -6,6 +6,7 @@ import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
 
 function RecipesList() {
   const recipesState = useSelector(getRecipes);
+  console.log(recipesState);
 
   return (
     <>

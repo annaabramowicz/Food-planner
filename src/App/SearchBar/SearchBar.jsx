@@ -6,44 +6,38 @@ import Icon from "components/Icon/Icon";
 import { IoSearch } from "react-icons/io5";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { getIngredientsAsyc } from "store/ingredients/ingredients";
-import { getRecipesAsyc } from "store/recipes/recipes";
+import { getIngredientsAsync } from "store/ingredients/ingredients";
+import { getRecipesAsync } from "store/recipes/recipes";
 import { throttle } from "lodash-es";
+import { useLocation } from "react-router-dom";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 const throttledSearchIngredientsAsync = throttle(
-  (dispatch, value, component) => {
-    dispatch(renderSwitch(component).query(value));
+  (dispatch, value, action) => {
+    dispatch(action(value));
   },
   3000,
   { leading: false }
 );
 
-const renderSwitch = (rendedComponent, value) => {
-  switch (rendedComponent) {
-    case "Home":
-      return { placeholder: "Search" };
-    case "Ingredients":
-      return {
-        placeholder: "Search by ingredients",
-        query: getIngredientsAsyc(value),
-      };
-    case "Fridge":
-      return { placeholder: "Search" };
-    case "Recipes":
-      return { placeholder: "Search by recipes", query: getRecipesAsyc(value) };
-    default:
-      return { placeholder: "Search" };
-  }
-};
-const SearchBar = ({
-  inputGroupProps,
-  borderColor = "transparent",
-  component,
-}) => {
+const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const isCurrentRouteIngredients = pathname.indexOf("ingredients") === 1;
+  const searchByPlaceholder = `Search by ${
+    isCurrentRouteIngredients ? `ingredients` : `recipes`
+  }`;
+  const placeholder = useBreakpointValue({
+    base: searchByPlaceholder,
+    sm: "Search",
+    md: searchByPlaceholder,
+  });
+  const searchBarAction = isCurrentRouteIngredients
+    ? getIngredientsAsync
+    : getRecipesAsync;
 
   const onValueChange = (e) => {
-    throttledSearchIngredientsAsync(dispatch, e.target.value, component);
+    throttledSearchIngredientsAsync(dispatch, e.target.value, searchBarAction);
   };
 
   return (
@@ -55,7 +49,7 @@ const SearchBar = ({
         paddingLeft={8}
         borderRadius="7px"
         focusBorderColor={colorPrimary}
-        placeholder={renderSwitch(component).placeholder}
+        placeholder={placeholder}
         borderColor={borderColor}
         onChange={onValueChange}
       />
@@ -65,7 +59,6 @@ const SearchBar = ({
 
 SearchBar.propTypes = {
   inputGroupProps: PropTypes.object,
-  component: PropTypes.string,
   borderColor: PropTypes.string,
 };
 
