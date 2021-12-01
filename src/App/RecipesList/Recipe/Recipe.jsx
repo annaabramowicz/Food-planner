@@ -22,11 +22,11 @@ function Recipe({ recipe }) {
         <Image
           borderRadius="10px"
           height={{ base: "230px", sm: "180px" }}
-          htmlHeight={{ base: "230px", sm: "180px" }}
+          htmlHeight="200px"
           mb="15px"
           src={recipe.image}
           alt={recipe.title}
-          objectFit={{ base: "cover", sm: "contain" }}
+          objectFit="none"
         />
       </Flex>
       <Text textAlign="start">{recipe.title}</Text>

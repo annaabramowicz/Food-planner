@@ -6,15 +6,17 @@ import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
 
 function RecipesList() {
   const recipesState = useSelector(getRecipes);
-  console.log(recipesState);
-
+  const renderedRecipes =
+    recipesState.recipes?.length !== 0
+      ? recipesState.recipes
+      : recipesState.initialRecipes;
   return (
     <>
       {recipesState.loading ? (
         <LoadingSpinner />
       ) : (
         <Flex flexWrap="wrap" justifyContent="space-between">
-          {recipesState.recipes.map((recipe) => (
+          {renderedRecipes.map((recipe) => (
             <Item key={recipe.id} recipe={recipe} />
           ))}
         </Flex>

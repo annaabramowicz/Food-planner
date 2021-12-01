@@ -1,13 +1,13 @@
 import RecipesList from "App/RecipesList/RecipesList";
 import { useDispatch } from "react-redux";
-import { getRecipesAsync } from "store/recipes/recipes";
+import { getInitialRecipesAsync } from "store/recipes/recipes";
 import { useEffect } from "react";
 
 const Recipes = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRecipesAsync());
+    dispatch(getInitialRecipesAsync());
   }, [dispatch]);
 
   return <RecipesList />;

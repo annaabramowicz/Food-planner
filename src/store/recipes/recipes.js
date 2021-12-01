@@ -4,13 +4,13 @@ import {
 } from "services/foodApi";
 
 //initial state
-const initialState = { recipes: [], loading: false };
+const initialState = { recipes: [], initialRecipes: [], loading: false };
 
 //ACTION TYPES
-const NAMESPACE = "GET_RECIPES_";
-const GET_RECIPES_STARTED = `${NAMESPACE}STARTED`;
-const GET_RECIPES_SUCCESS = `${NAMESPACE}SUCCESS`;
-const GET_RECIPES_FAIL = `${NAMESPACE}FAIL`;
+const GET_RECIPES_STARTED = `GET_RECIPES_STARTED`;
+const GET_RECIPES_SUCCESS = `GET_RECIPES_SUCCESS`;
+const GET_INITIAL_RECIPES_SUCCESS = `GET_RECIPES_INITIAL_SUCCESS`;
+const GET_RECIPES_FAIL = `GET_RECIPES_FAIL`;
 
 //REDUCER
 const reducer = (state = initialState, action) => {
@@ -23,6 +23,13 @@ const reducer = (state = initialState, action) => {
     case GET_RECIPES_SUCCESS:
       return {
         recipes: action.payload?.length ? [...action.payload] : [],
+        initialRecipes: [...state.initialRecipes],
+        loading: false,
+      };
+    case GET_INITIAL_RECIPES_SUCCESS:
+      return {
+        recipes: [],
+        initialRecipes: [...action.payload],
         loading: false,
       };
     case GET_RECIPES_FAIL:
@@ -41,19 +48,44 @@ const getRecipesSuccess = (result) => ({
   type: GET_RECIPES_SUCCESS,
   payload: result,
 });
+const getInitialRecipesSuccess = (result) => ({
+  type: GET_INITIAL_RECIPES_SUCCESS,
+  payload: result,
+});
 const getRecipesFail = (error) => ({ type: GET_RECIPES_FAIL, error });
 
 // THUNKS
-export const getRecipesAsync = (searchTerm) => async (dispatch) => {
-  dispatch(getRecipesStarted(searchTerm));
-  try {
-    const result = searchTerm
-      ? await getRecipesBySearchTermFromApi(searchTerm)
-      : await getRecipesFromApi();
+export const getRecipesAsync = (searchTerm) => async (dispatch, getState) => {
+  const state = getState();
+  if (searchTerm) {
+    dispatch(getRecipesStarted(searchTerm));
+    try {
+      const result = await getRecipesBySearchTermFromApi(searchTerm);
+      dispatch(getRecipesSuccess(result));
+    } catch (err) {
+      dispatch(getRecipesFail(err));
+    }
+  } else {
+    const result = getRecipes(state).initialRecipes;
+    dispatch(getInitialRecipesSuccess(result));
+  }
+};
 
-    dispatch(getRecipesSuccess(result));
-  } catch (err) {
-    dispatch(getRecipesFail(err));
+export const getInitialRecipesAsync = () => async (dispatch, getState) => {
+  dispatch(getRecipesStarted());
+  const state = getState();
+  const hasInitialRecipesAlreadyFetched =
+    getRecipes(state).initialRecipes.length >= 1;
+  if (!hasInitialRecipesAlreadyFetched) {
+    try {
+      const result = await getRecipesFromApi();
+      dispatch(getInitialRecipesSuccess(result));
+    } catch (err) {
+      dispatch(getRecipesFail(err));
+    }
+  } else {
+    const result = getRecipes(state).initialRecipes;
+    dispatch(getInitialRecipesSuccess(result));
   }
 };
 
