@@ -2,11 +2,13 @@ import Flex from "components/Flex/Flex";
 import Text from "components/Text/Text";
 import Image from "components/Image/Image";
 import Icon from "components/Icon/Icon";
+import Tag from "components/Tag/Tag";
 import { IoFlameOutline } from "react-icons/io5";
 import { colorFourth } from "App/style/theme/theme";
 
 function Recipe({ recipe }) {
-  const nutrientPath = recipe.nutrition.nutrients;
+  const [calories, protein, fat, carb] = recipe.nutrition.nutrients;
+
   return (
     <Flex
       p={1}
@@ -30,18 +32,16 @@ function Recipe({ recipe }) {
         />
       </Flex>
       <Text textAlign="start">{recipe.title}</Text>
-      <Flex w="200px" justifyContent="flex-start">
-        <Text fontSize="sm" mr={2}>
-          {nutrientPath[1].title} {Math.floor(nutrientPath[1].amount)}{" "}
-          {nutrientPath[1].unit}
-        </Text>
-        <Text fontSize="sm" mr={2}>
-          {nutrientPath[2].title} {Math.floor(nutrientPath[2].amount)}{" "}
-          {nutrientPath[2].unit}
-        </Text>
-        <Text fontSize="sm">
-          Carb {Math.floor(nutrientPath[3].amount)} {nutrientPath[3].unit}
-        </Text>
+      <Flex mb="2px" justifyContent="flex-start">
+        <Tag fontSize="sm" p="5px" mr={1}>
+          Protein {Math.floor(protein.amount)} {fat.unit}
+        </Tag>
+        <Tag fontSize="sm" p="5px" mr={1}>
+          Fat {Math.floor(fat.amount)} {fat.unit}
+        </Tag>
+        <Tag fontSize="sm" p="5px">
+          Carb {Math.floor(carb.amount)} {carb.unit}
+        </Tag>
       </Flex>
       <Flex
         pos={{ base: "absolute", sm: "static" }}
@@ -55,7 +55,7 @@ function Recipe({ recipe }) {
         mt={1}
       >
         <Icon w="20px" as={IoFlameOutline} />
-        <Text mt="2px">{Math.floor(nutrientPath[0].amount)} Cal</Text>
+        <Text mt="2px">{Math.floor(calories.amount)} Cal</Text>
       </Flex>
     </Flex>
   );
