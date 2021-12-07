@@ -15,7 +15,11 @@ function RecipesList() {
       {recipesState.loading ? (
         <LoadingSpinner />
       ) : (
-        <Flex flexWrap="wrap" justifyContent="space-between">
+        <Flex
+          alignItems="flex-start"
+          flexWrap="wrap"
+          justifyContent="space-between"
+        >
           {renderedRecipes.map((recipe) => (
             <Item key={recipe.id} recipe={recipe} />
           ))}

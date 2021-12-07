@@ -12,7 +12,7 @@ import { throttle } from "lodash-es";
 import { useLocation } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 
-const throttledSearchIngredientsAsync = throttle(
+const throttledSearchAsync = throttle(
   (dispatch, value, action) => {
     dispatch(action(value));
   },
@@ -37,7 +37,7 @@ const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
     : getRecipesAsync;
 
   const onValueChange = (e) => {
-    throttledSearchIngredientsAsync(dispatch, e.target.value, searchBarAction);
+    throttledSearchAsync(dispatch, e.target.value, searchBarAction);
   };
 
   return (

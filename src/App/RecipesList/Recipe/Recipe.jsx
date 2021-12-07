@@ -3,62 +3,70 @@ import Text from "components/Text/Text";
 import Image from "components/Image/Image";
 import Icon from "components/Icon/Icon";
 import Tag from "components/Tag/Tag";
+import Box from "components/Box/Box";
 import { IoFlameOutline } from "react-icons/io5";
 import { colorFourth } from "App/style/theme/theme";
+import PropTypes from "prop-types";
 
 function Recipe({ recipe }) {
   const [calories, protein, fat, carb] = recipe.nutrition.nutrients;
 
   return (
-    <Flex
-      p={1}
-      m={1}
-      flexDirection="column"
-      alignItems="flex-start"
-      w={{ base: "210px", sm: "260px" }}
-      minH={{ base: "331px", sm: "311px" }}
-      justifyContent="flex-start"
+    <Box
+      maxW={{ base: "210px", sm: "312px" }}
+      h={{ sm: "383px" }}
+      border="1px"
+      borderColor={colorFourth}
+      borderRadius="lg"
+      overflow="hidden"
+      m={{ base: 1, sm: 2 }}
       pos="relative"
     >
-      <Flex h={{ base: "230px", sm: "180px" }} minW="210px">
-        <Image
-          borderRadius="10px"
-          height={{ base: "230px", sm: "180px" }}
-          htmlHeight="200px"
-          mb="15px"
-          src={recipe.image}
-          alt={recipe.title}
-          objectFit="none"
-        />
-      </Flex>
-      <Text textAlign="start">{recipe.title}</Text>
-      <Flex mb="2px" justifyContent="flex-start">
-        <Tag fontSize="sm" p="5px" mr={1}>
-          Protein {Math.floor(protein.amount)} {fat.unit}
-        </Tag>
-        <Tag fontSize="sm" p="5px" mr={1}>
-          Fat {Math.floor(fat.amount)} {fat.unit}
-        </Tag>
-        <Tag fontSize="sm" p="5px">
-          Carb {Math.floor(carb.amount)} {carb.unit}
-        </Tag>
-      </Flex>
+      <Image src={recipe.image} alt={recipe.title} />
       <Flex
-        pos={{ base: "absolute", sm: "static" }}
-        left="15px"
-        top="175px"
-        borderRadius="5px"
-        bg="white"
-        p="2px 6px 2px 4px"
-        border="1px"
-        borderColor={colorFourth}
-        mt={1}
+        flexDirection="column"
+        alignItems="start-flex"
+        height={{ base: "95px", sm: "150px" }}
+        justifyContent="space-between"
+        p={{ base: 2, sm: 4 }}
       >
-        <Icon w="20px" as={IoFlameOutline} />
-        <Text mt="2px">{Math.floor(calories.amount)} Cal</Text>
+        <Text mb="6px" textAlign="start">
+          {recipe.title}
+        </Text>
+        <Box>
+          <Flex mb={{ sm: "7px" }} justifyContent="flex-start">
+            <Tag fontSize={{ base: "xs", sm: "sm" }} p="3px" mr={1}>
+              Protein {Math.floor(protein.amount)} {fat.unit}
+            </Tag>
+            <Tag fontSize={{ base: "xs", sm: "sm" }} p="3px" mr={1}>
+              Fat {Math.floor(fat.amount)} {fat.unit}
+            </Tag>
+            <Tag fontSize={{ base: "xs", sm: "sm" }} p="3spx">
+              Carb {Math.floor(carb.amount)} {carb.unit}
+            </Tag>
+          </Flex>
+          <Flex
+            pos={{ base: "absolute", sm: "static" }}
+            left="10px"
+            top="105px"
+            borderRadius="5px"
+            bg="white"
+            p="2px 6px 2px 4px"
+            border="1px"
+            borderColor={colorFourth}
+            mt={1}
+            w="100px"
+          >
+            <Icon w="20px" as={IoFlameOutline} />
+            <Text mt="2px">{Math.floor(calories.amount)} Cal</Text>
+          </Flex>
+        </Box>
       </Flex>
-    </Flex>
+    </Box>
   );
 }
 
+Recipe.propTypes = {
+  recipe: PropTypes.object,
+};
 export default Recipe;
