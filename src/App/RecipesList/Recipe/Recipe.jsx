@@ -22,7 +22,7 @@ function Recipe({ recipe }) {
       m={{ base: 1, sm: 2 }}
       pos="relative"
     >
-      <Image src={recipe.image} alt={recipe.title} />
+      <Image loading="lazy" src={recipe.image} alt={recipe.title} />
       <Flex
         flexDirection="column"
         alignItems="start-flex"
