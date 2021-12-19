@@ -9,12 +9,12 @@ import { useDispatch } from "react-redux";
 import { getIngredientsAsync } from "store/ingredients/ingredients";
 import { getRecipesAsync } from "store/recipes/recipes";
 import { throttle } from "lodash-es";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 
 const throttledSearchAsync = throttle(
-  (dispatch, value, action) => {
-    dispatch(action(value));
+  (dispatch, value, action, postAction) => {
+    dispatch(action(value, postAction));
   },
   3000,
   { leading: false }
@@ -23,6 +23,8 @@ const throttledSearchAsync = throttle(
 const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const { push } = useHistory();
+  const isCurrentRouteRecipes = pathname.indexOf("recipes") === 1;
   const isCurrentRouteIngredients = pathname.indexOf("ingredients") === 1;
   const searchByPlaceholder = `Search by ${
     isCurrentRouteIngredients ? `ingredients` : `recipes`
@@ -37,7 +39,11 @@ const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
     : getRecipesAsync;
 
   const onValueChange = (e) => {
-    throttledSearchAsync(dispatch, e.target.value, searchBarAction);
+    const postAction =
+      !isCurrentRouteIngredients && !isCurrentRouteRecipes
+        ? push("/recipes")
+        : undefined;
+    throttledSearchAsync(dispatch, e.target.value, searchBarAction, postAction);
   };
 
   return (

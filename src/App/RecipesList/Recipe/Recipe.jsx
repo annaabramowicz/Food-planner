@@ -13,16 +13,23 @@ function Recipe({ recipe }) {
 
   return (
     <Box
-      maxW={{ base: "210px", sm: "312px" }}
-      h={{ sm: "383px" }}
+      maxW={{ base: "210px", sm: "280px" }}
       border="1px"
       borderColor={colorFourth}
       borderRadius="lg"
       overflow="hidden"
-      m={{ base: 1, sm: 2 }}
+      m={{ base: 2, sm: 2 }}
       pos="relative"
     >
-      <Image loading="lazy" src={recipe.image} alt={recipe.title} />
+      <Image
+        loading="lazy"
+        h={{ sm: "180px" }}
+        objectFit="none"
+        minWidth={{ sm: "310px" }}
+        objectPosition="-15px"
+        src={recipe.image}
+        alt={recipe.title}
+      />
       <Flex
         flexDirection="column"
         alignItems="start-flex"

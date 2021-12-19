@@ -21,7 +21,6 @@ function Ingredient({ ingredient }) {
   return (
     <Flex
       onClick={selectedIngredient}
-      pos="relative"
       w="120px"
       h="130px"
       border="1px"
@@ -29,33 +28,41 @@ function Ingredient({ ingredient }) {
       _hover={{
         boxShadow: `0px 0px 0px 2px ${colorPrimary}`,
         color: colorPrimary,
-        opacity: 0.7,
+        cursor: "pointer",
       }}
+      {...(showText && {
+        boxShadow: `0px 0px 0px 2px ${colorPrimary}`,
+        color: colorPrimary,
+      })}
       borderRadius="10px"
       p="4px"
       flexDirection="column"
       m="5px"
     >
-      <Flex h="100px">
+      <Flex h="100px" pos="relative">
         <Image
+          maxH="80px"
           loading="lazy"
           htmlHeight="130px"
           src={imagePath + ingredient.image}
           alt={ingredient.name}
+          opacity={showText ? 0.3 : 1}
         />
+        {showText && (
+          <Circle
+            pos="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%,-50%)"
+            size="30px"
+            bg={colorPrimary}
+            color="white"
+          >
+            <Icon as={IoCheckmark} />
+          </Circle>
+        )}
       </Flex>
       <Text>{ingredient.name}</Text>
-      {showText && (
-        <Circle
-          pos="absolute"
-          top="40px"
-          size="30px"
-          bg={colorPrimary}
-          color="white"
-        >
-          <Icon as={IoCheckmark} />
-        </Circle>
-      )}
     </Flex>
   );
 }

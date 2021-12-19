@@ -18,7 +18,7 @@ function RecipesList() {
         <Flex
           alignItems="flex-start"
           flexWrap="wrap"
-          justifyContent="space-between"
+          justifyContent="space-around"
         >
           {renderedRecipes.map((recipe) => (
             <Item key={recipe.id} recipe={recipe} />

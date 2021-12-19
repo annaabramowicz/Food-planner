@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navigation from "./Navigation/Navigation";
 import Box from "components/Box/Box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,8 +6,15 @@ import routes from "./routes";
 import MobileHeader from "App/MobileHeader/MobileHeader";
 import { colorFourth } from "./style/theme/theme";
 import SearchBar from "./SearchBar/SearchBar";
+import { useDispatch } from "react-redux";
+import { getInitialRecipesAsync } from "store/recipes/recipes";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getInitialRecipesAsync());
+  }, [dispatch]);
   return (
     <Box padding={{ base: "5px 10px", lg: "5px 30px" }} overflowX="hidden">
       <Router>
