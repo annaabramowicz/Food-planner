@@ -8,14 +8,30 @@ import { Circle } from "@chakra-ui/react";
 import Icon from "components/Icon/Icon";
 import { IoCheckmark } from "react-icons/io5";
 import { useState } from "react";
+import {
+  addIngredientToFridge,
+  removeIngredientFromFridge,
+  getIngredientsFormFridge,
+} from "store/fridge/fridge";
+
+import { useSelector, useDispatch } from "react-redux";
 
 function Ingredient({ ingredient }) {
+  const fridgeState = useSelector(getIngredientsFormFridge);
+  const dispatch = useDispatch();
   const imageSize = `100x100`;
   const imagePath = `${config.apiCdnUrl}ingredients_${imageSize}/`;
-  const [showText, setShowText] = useState(false);
+  const [checkMark, setCheckMark] = useState(false);
+
   const selectedIngredient = () => {
-    console.log(ingredient.id);
-    setShowText(!showText);
+    setCheckMark(!checkMark);
+    dispatch(addIngredientToFridge(ingredient));
+    const includeIngredient = fridgeState
+      .map((elem) => elem.id)
+      .include(ingredient.id);
+    includeIngredient
+      ? dispatch(removeIngredientFromFridge(ingredient.id))
+      : dispatch(addIngredientToFridge(ingredient));
   };
 
   return (
@@ -30,7 +46,7 @@ function Ingredient({ ingredient }) {
         color: colorPrimary,
         cursor: "pointer",
       }}
-      {...(showText && {
+      {...(checkMark && {
         boxShadow: `0px 0px 0px 2px ${colorPrimary}`,
         color: colorPrimary,
       })}
@@ -46,9 +62,9 @@ function Ingredient({ ingredient }) {
           htmlHeight="130px"
           src={imagePath + ingredient.image}
           alt={ingredient.name}
-          opacity={showText ? 0.3 : 1}
+          opacity={checkMark ? 0.3 : 1}
         />
-        {showText && (
+        {checkMark && (
           <Circle
             pos="absolute"
             top="50%"
