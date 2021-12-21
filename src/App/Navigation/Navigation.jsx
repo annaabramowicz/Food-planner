@@ -1,7 +1,6 @@
 import Box from "components/Box/Box";
 import MobileNavigation from "./MobileNavigation";
 import TabletDesktopNavigation from "./TabletDesktopNavigation";
-import PropTypes from "prop-types";
 
 const Navigation = (props) => (
   <>
@@ -13,9 +12,5 @@ const Navigation = (props) => (
     </Box>
   </>
 );
-
-TabletDesktopNavigation.propTypes = {
-  routes: PropTypes.array,
-};
 
 export default Navigation;

@@ -14,12 +14,13 @@ function Ingredient({ ingredient }) {
   const imagePath = `${config.apiCdnUrl}ingredients_${imageSize}/`;
   const [showText, setShowText] = useState(false);
   const selectedIngredient = () => {
-    console.log(ingredient.id);
     setShowText(!showText);
   };
 
   return (
     <Flex
+      m="10px"
+      bg="white"
       onClick={selectedIngredient}
       w="120px"
       h="130px"
@@ -37,7 +38,6 @@ function Ingredient({ ingredient }) {
       borderRadius="10px"
       p="4px"
       flexDirection="column"
-      m="5px"
     >
       <Flex h="100px" pos="relative">
         <Image
@@ -68,7 +68,11 @@ function Ingredient({ ingredient }) {
 }
 
 Ingredient.propTypes = {
-  ingredient: PropTypes.object,
+  ingredient: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default Ingredient;

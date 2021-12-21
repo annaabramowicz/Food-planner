@@ -13,7 +13,8 @@ function Recipe({ recipe }) {
 
   return (
     <Box
-      maxW={{ base: "210px", sm: "280px" }}
+      bgColor="white"
+      maxW={{ base: "210px", sm: "255px" }}
       border="1px"
       borderColor={colorFourth}
       borderRadius="lg"
@@ -23,10 +24,8 @@ function Recipe({ recipe }) {
     >
       <Image
         loading="lazy"
-        h={{ sm: "180px" }}
         objectFit="none"
-        minWidth={{ sm: "310px" }}
-        objectPosition="-15px"
+        objectPosition="-30px"
         src={recipe.image}
         alt={recipe.title}
       />
@@ -74,6 +73,14 @@ function Recipe({ recipe }) {
 }
 
 Recipe.propTypes = {
-  recipe: PropTypes.object,
+  recipe: PropTypes.shape({
+    id: PropTypes.number,
+    image: PropTypes.string,
+    imageType: PropTypes.string,
+    nutrition: PropTypes.shape({
+      nutrients: PropTypes.array,
+    }),
+    title: PropTypes.string,
+  }),
 };
 export default Recipe;

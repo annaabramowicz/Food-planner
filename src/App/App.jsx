@@ -4,7 +4,7 @@ import Box from "components/Box/Box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import routes from "./routes";
 import MobileHeader from "App/MobileHeader/MobileHeader";
-import { colorFourth } from "./style/theme/theme";
+import { colorFourth, colorFifth } from "./style/theme/theme";
 import SearchBar from "./SearchBar/SearchBar";
 import { useDispatch } from "react-redux";
 import { getInitialRecipesAsync } from "store/recipes/recipes";
@@ -38,7 +38,15 @@ function App() {
                   }}
                 />
               </Box>
-              <Box mb={{ base: "100px", sm: "0" }}>{route.component}</Box>
+              <Box
+                w="100vw"
+                bgColor={colorFifth}
+                ml={{ base: "-10px", sm: "-18px", md: "-10px", lg: "-30px" }}
+                mt="-10px"
+                mb={{ base: "95px", sm: "0" }}
+              >
+                {route.component}
+              </Box>
             </Route>
           ))}
         </Switch>

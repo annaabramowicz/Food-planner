@@ -1,7 +1,7 @@
-import Ingredients from "../pages/Ingredients/Ingredients";
-import Fridge from "../pages/Fridge/Fridge";
-import Recipes from "../pages/Recipes/Recipes";
-import Home from "../pages/Home/Home";
+import Ingredients from "./pages/Ingredients/Ingredients";
+import Fridge from "./pages/Fridge/Fridge";
+import Recipes from "./pages/Recipes/Recipes";
+import Home from "./pages/Home/Home";
 import {
   IoHomeOutline,
   IoCartOutline,

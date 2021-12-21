@@ -41,7 +41,7 @@ const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
   const onValueChange = (e) => {
     const postAction =
       !isCurrentRouteIngredients && !isCurrentRouteRecipes
-        ? push("/recipes")
+        ? () => push("/recipes")
         : undefined;
     throttledSearchAsync(dispatch, e.target.value, searchBarAction, postAction);
   };
@@ -64,7 +64,12 @@ const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
 };
 
 SearchBar.propTypes = {
-  inputGroupProps: PropTypes.object,
+  inputGroupProps: PropTypes.shape({
+    bgColor: PropTypes.shape({
+      colorFourth: PropTypes.string,
+    }),
+    variant: PropTypes.string,
+  }),
   borderColor: PropTypes.string,
 };
 
