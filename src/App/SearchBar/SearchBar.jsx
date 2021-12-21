@@ -41,7 +41,7 @@ const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
   const onValueChange = (e) => {
     const postAction =
       !isCurrentRouteIngredients && !isCurrentRouteRecipes
-        ? push("/recipes")
+        ? () => push("/recipes")
         : undefined;
     throttledSearchAsync(dispatch, e.target.value, searchBarAction, postAction);
   };

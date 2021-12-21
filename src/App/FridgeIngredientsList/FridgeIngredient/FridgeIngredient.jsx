@@ -8,14 +8,14 @@ import { Circle } from "@chakra-ui/react";
 import Icon from "components/Icon/Icon";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { removeIngredientFromFridge } from "store/fridge/fridge";
+import { removeIngredientFromFridgeThunk } from "store/fridge/fridge";
 
 function Ingredient({ ingredient }) {
   const dispatch = useDispatch();
   const imageSize = `100x100`;
   const imagePath = `${config.apiCdnUrl}ingredients_${imageSize}/`;
   const selectedIngredient = () => {
-    dispatch(removeIngredientFromFridge(ingredient.id));
+    dispatch(removeIngredientFromFridgeThunk(ingredient.id));
   };
 
   return (

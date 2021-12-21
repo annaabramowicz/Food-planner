@@ -7,36 +7,32 @@ import PropTypes from "prop-types";
 import { Circle } from "@chakra-ui/react";
 import Icon from "components/Icon/Icon";
 import { IoCheckmark } from "react-icons/io5";
-import { useState } from "react";
 import {
-  addIngredientToFridge,
-  removeIngredientFromFridge,
-  getIngredientsFormFridge,
+  addIngredientToFridgeThunk,
+  getFridgeState,
+  removeIngredientFromFridgeThunk,
 } from "store/fridge/fridge";
 
 import { useSelector, useDispatch } from "react-redux";
 
 function Ingredient({ ingredient }) {
-  const fridgeState = useSelector(getIngredientsFormFridge);
+  const { ingredients } = useSelector(getFridgeState);
   const dispatch = useDispatch();
   const imageSize = `100x100`;
   const imagePath = `${config.apiCdnUrl}ingredients_${imageSize}/`;
-  const [checkMark, setCheckMark] = useState(false);
+  const isIngredientSelected = ingredients?.some(
+    (storeIngredient) => storeIngredient.id === ingredient.id
+  );
 
-  const selectedIngredient = () => {
-    setCheckMark(!checkMark);
-    dispatch(addIngredientToFridge(ingredient));
-    const includeIngredient = fridgeState
-      .map((elem) => elem.id)
-      .include(ingredient.id);
-    includeIngredient
-      ? dispatch(removeIngredientFromFridge(ingredient.id))
-      : dispatch(addIngredientToFridge(ingredient));
+  const toggleIngredient = () => {
+    isIngredientSelected
+      ? dispatch(removeIngredientFromFridgeThunk(ingredient.id))
+      : dispatch(addIngredientToFridgeThunk(ingredient));
   };
 
   return (
     <Flex
-      onClick={selectedIngredient}
+      onClick={toggleIngredient}
       w="120px"
       h="130px"
       border="1px"
@@ -46,7 +42,7 @@ function Ingredient({ ingredient }) {
         color: colorPrimary,
         cursor: "pointer",
       }}
-      {...(checkMark && {
+      {...(isIngredientSelected && {
         boxShadow: `0px 0px 0px 2px ${colorPrimary}`,
         color: colorPrimary,
       })}
@@ -62,9 +58,9 @@ function Ingredient({ ingredient }) {
           htmlHeight="130px"
           src={imagePath + ingredient.image}
           alt={ingredient.name}
-          opacity={checkMark ? 0.3 : 1}
+          opacity={isIngredientSelected ? 0.3 : 1}
         />
-        {checkMark && (
+        {isIngredientSelected && (
           <Circle
             pos="absolute"
             top="50%"
