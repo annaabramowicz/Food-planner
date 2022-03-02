@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import Icon from "components/Icon/Icon";
 import { useState } from "react";
 import { colorPrimary } from "../style/theme/theme";
-import PropTypes from "prop-types";
 import { colorFourth } from "App/style/theme/theme";
 
 const MobileNavigation = ({ routes }) => {
@@ -21,7 +20,7 @@ const MobileNavigation = ({ routes }) => {
       left={0}
       right={0}
       zIndex={1}
-      >
+    >
       {routes.map((route) => {
         const activeLinkStyles =
           activePath === route.path
@@ -54,10 +53,6 @@ const MobileNavigation = ({ routes }) => {
       })}
     </Flex>
   );
-};
-
-MobileNavigation.propTypes = {
-  routes: PropTypes.array,
 };
 
 export default MobileNavigation;

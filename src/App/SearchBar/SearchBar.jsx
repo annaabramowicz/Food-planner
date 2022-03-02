@@ -64,7 +64,12 @@ const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
 };
 
 SearchBar.propTypes = {
-  inputGroupProps: PropTypes.object,
+  inputGroupProps: PropTypes.shape({
+    bgColor: PropTypes.shape({
+      colorFourth: PropTypes.string,
+    }),
+    variant: PropTypes.string,
+  }),
   borderColor: PropTypes.string,
 };
 

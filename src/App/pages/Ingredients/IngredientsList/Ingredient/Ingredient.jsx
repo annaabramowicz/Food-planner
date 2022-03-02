@@ -12,7 +12,6 @@ import {
   getFridgeState,
   removeIngredientFromFridgeThunk,
 } from "store/fridge/fridge";
-
 import { useSelector, useDispatch } from "react-redux";
 
 function Ingredient({ ingredient }) {
@@ -49,7 +48,6 @@ function Ingredient({ ingredient }) {
       borderRadius="10px"
       p="4px"
       flexDirection="column"
-      m="5px"
     >
       <Flex h="100px" pos="relative">
         <Image
@@ -80,7 +78,11 @@ function Ingredient({ ingredient }) {
 }
 
 Ingredient.propTypes = {
-  ingredient: PropTypes.object,
+  ingredient: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default Ingredient;
