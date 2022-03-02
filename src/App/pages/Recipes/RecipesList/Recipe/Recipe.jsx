@@ -21,9 +21,11 @@ function Recipe({ recipe }) {
       overflow="hidden"
       m={{ base: 2, sm: 2 }}
       pos="relative"
+      height={{ base: "275px", sm: "360px" }}
     >
       <Image
         loading="lazy"
+        height={{ base: "155px", sm: "187px" }}
         objectFit="none"
         objectPosition="-30px"
         src={recipe.image}
@@ -32,7 +34,7 @@ function Recipe({ recipe }) {
       <Flex
         flexDirection="column"
         alignItems="start-flex"
-        height={{ base: "95px", sm: "150px" }}
+        height={{ base: "118px", sm: "175px" }}
         justifyContent="space-between"
         p={{ base: 2, sm: 4 }}
       >

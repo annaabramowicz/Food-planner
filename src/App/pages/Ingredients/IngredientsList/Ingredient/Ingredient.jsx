@@ -19,7 +19,7 @@ function Ingredient({ ingredient }) {
 
   return (
     <Flex
-      m="10px"
+      m="10px 5px 0 5px"
       bg="white"
       onClick={selectedIngredient}
       w="120px"

@@ -9,7 +9,7 @@ import {
   colorPrimaryDark,
   colorFourth,
 } from "../style/theme/theme";
-import PropTypes from "prop-types";
+import { navigationProps } from "./navigationProps";
 
 const TabletDesktopNavigation = ({ routes }) => {
   const [activePath, setActivePath] = useState(routes[0].path);
@@ -67,14 +67,11 @@ const TabletDesktopNavigation = ({ routes }) => {
         borderBottom={`3px solid ${colorFourth}`}
         w="110vw"
         marginLeft="-30px"
-        marginBottom="10px"
       />
     </>
   );
 };
 
-TabletDesktopNavigation.propTypes = {
-  routes: PropTypes.array,
-};
+TabletDesktopNavigation.propTypes = navigationProps;
 
 export default TabletDesktopNavigation;
