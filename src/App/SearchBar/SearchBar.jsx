@@ -6,26 +6,44 @@ import Icon from "components/Icon/Icon";
 import { IoSearch } from "react-icons/io5";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { getIngredientsAsyc } from "store/ingredients/ingredients";
+import { getIngredientsAsync } from "store/ingredients/ingredients";
+import { getRecipesAsync } from "store/recipes/recipes";
 import { throttle } from "lodash-es";
+import { useLocation, useHistory } from "react-router-dom";
+import { useBreakpointValue } from "@chakra-ui/react";
 
-const throttledSearchIngredientsAsync = throttle(
-  (dispatch, value) => {
-    dispatch(getIngredientsAsyc(value));
+const throttledSearchAsync = throttle(
+  (dispatch, value, action, postAction) => {
+    dispatch(action(value, postAction));
   },
   3000,
   { leading: false }
 );
 
-const SearchBar = ({
-  inputGroupProps,
-  borderColor = "transparent",
-  placeholder,
-}) => {
+const SearchBar = ({ inputGroupProps, borderColor = "transparent" }) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const { push } = useHistory();
+  const isCurrentRouteRecipes = pathname.indexOf("recipes") === 1;
+  const isCurrentRouteIngredients = pathname.indexOf("ingredients") === 1;
+  const searchByPlaceholder = `Search by ${
+    isCurrentRouteIngredients ? `ingredients` : `recipes`
+  }`;
+  const placeholder = useBreakpointValue({
+    base: searchByPlaceholder,
+    sm: "Search",
+    md: searchByPlaceholder,
+  });
+  const searchBarAction = isCurrentRouteIngredients
+    ? getIngredientsAsync
+    : getRecipesAsync;
 
   const onValueChange = (e) => {
-    throttledSearchIngredientsAsync(dispatch, e.target.value);
+    const postAction =
+      !isCurrentRouteIngredients && !isCurrentRouteRecipes
+        ? () => push("/recipes")
+        : undefined;
+    throttledSearchAsync(dispatch, e.target.value, searchBarAction, postAction);
   };
 
   return (
@@ -46,8 +64,12 @@ const SearchBar = ({
 };
 
 SearchBar.propTypes = {
-  inputGroupProps: PropTypes.object,
-  placeholder: PropTypes.string,
+  inputGroupProps: PropTypes.shape({
+    bgColor: PropTypes.shape({
+      colorFourth: PropTypes.string,
+    }),
+    variant: PropTypes.string,
+  }),
   borderColor: PropTypes.string,
 };
 

@@ -9,15 +9,11 @@ import {
   colorPrimaryDark,
   colorFourth,
 } from "../style/theme/theme";
-import PropTypes from "prop-types";
-import { useBreakpointValue } from "@chakra-ui/react";
+import { navigationProps } from "./navigationProps";
 
 const TabletDesktopNavigation = ({ routes }) => {
   const [activePath, setActivePath] = useState(routes[0].path);
-  const placeholder = useBreakpointValue({
-    sm: "Search",
-    md: "Search by recipes or ingredients",
-  });
+
   return (
     <>
       <Flex justifyContent="space-between" w="100%" h="100px" m="0 auto">
@@ -64,21 +60,18 @@ const TabletDesktopNavigation = ({ routes }) => {
           </Flex>
         </Flex>
         <Box w={{ sm: "200px", md: "250px" }}>
-          <SearchBar placeholder={placeholder} borderColor={colorFourth} />
+          <SearchBar borderColor={colorFourth} />
         </Box>
       </Flex>
       <Box
         borderBottom={`3px solid ${colorFourth}`}
         w="110vw"
         marginLeft="-30px"
-        marginBottom="10px"
       />
     </>
   );
 };
 
-TabletDesktopNavigation.propTypes = {
-  routes: PropTypes.array,
-};
+TabletDesktopNavigation.propTypes = navigationProps;
 
 export default TabletDesktopNavigation;
