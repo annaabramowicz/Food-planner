@@ -48,6 +48,8 @@ function Ingredient({ ingredient }) {
       borderRadius="10px"
       p="4px"
       flexDirection="column"
+      m="10px 5px 0 5px"
+      bg="white"
     >
       <Flex h="100px" pos="relative">
         <Image
